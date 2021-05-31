@@ -13,6 +13,8 @@ YELLOW = (255, 255, 0)
 BLACK = (24, 25, 26)
 
 
+
+
 def initialize_board():
     board = np.zeros((ROWS, COLUMNS))
     return board
@@ -123,7 +125,7 @@ screen = pygame.display.set_mode(size)
 draw_board(board)
 pygame.display.update() # ensures we see what we drew
 
-
+myFont = pygame.font.SysFont("verdana", 75)
 
 while not game_over:
 
@@ -142,6 +144,7 @@ while not game_over:
             pygame.display.update()
 
         if event.type == pygame.MOUSEBUTTONDOWN:
+            pygame.draw.rect(screen, BLACK, (0, 0, width, SQUARE_SIZE)) 
             # print(event.pos)
 
             # # Ask for player 1 input;
@@ -155,12 +158,14 @@ while not game_over:
                     drop_piece(board, row, col, 1)
 
                     if win_game(board, 1):
-                        print("player 1 wins!")
+                        # print("player 1 wins!")
+                        label = myFont.render("Player 1 wins!", 1, RED)
+                        screen.blit(label, (40, 10))
+
                         game_over = True
 
 
             # Ask for player 2 input
-
             else:
                 posX = event.pos[0] 
                 col = int(math.floor(posX/SQUARE_SIZE))
@@ -170,7 +175,9 @@ while not game_over:
                     drop_piece(board, row, col, 2)
 
                     if win_game(board, 2):
-                        print("player 2 wins!")
+                        # print("player 2 wins!")
+                        label = myFont.render("Player 2 wins!", 1, YELLOW)
+                        screen.blit(label, (40, 10))
                         game_over = True 
 
 
@@ -193,4 +200,4 @@ while not game_over:
             turn = turn % 2 # alternate between 0 and 1
 
             if game_over:
-                pygame.time.wait(3000)
+                pygame.time.wait(5000)
