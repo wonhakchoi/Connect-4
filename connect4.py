@@ -3,7 +3,7 @@ import pygame
 import sys
 import math
 
-#  testing!
+#  testing testing
 
 ROWS = 6
 COLUMNS = 7
