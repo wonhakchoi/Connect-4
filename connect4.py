@@ -3,6 +3,8 @@ import pygame
 import sys
 import math
 
+#  testing!
+
 ROWS = 6
 COLUMNS = 7
 CONNECT = 4
